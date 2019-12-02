@@ -1,3 +1,4 @@
+package controller;
 import data.ScrapeWebSmallKonica;
 
 import java.io.IOException;
