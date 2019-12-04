@@ -4,23 +4,23 @@ import java.util.*;
 
 public class Printer {
 
-    private String name;
-    private String serialNumber;
+    private String name = "Error";
+    private String serialNumber = "Error";
     private String ip;
 
-    private int cyanToner;
-    private int magentaToner;
-    private int yellowToner;
-    private int blackToner;
+    private int cyanToner = 0;
+    private int magentaToner = 0;
+    private int yellowToner = 0;
+    private int blackToner = 0;
 
-    private int cyanIU;
-    private int magentaIU;
-    private int yellowIU;
-    private int blackIU;
+    private int cyanIU = 0;
+    private int magentaIU = 0;
+    private int yellowIU = 0;
+    private int blackIU = 0;
 
-    private int transferBelt;
-    private int transferRoller;
-    private int fuserUnit;
+    private int transferBelt = 0;
+    private int transferRoller = 0;
+    private int fuserUnit = 0;
 
     public Printer(List<String> printerInfo, List<Integer> printerLevels) {
         this.name = printerInfo.get(0);

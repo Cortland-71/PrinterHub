@@ -1,27 +1,44 @@
 package controller;
-import data.ScrapeWebSmallKonica;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.*;
 
-import view.*;
+import data.*;
+import view.View;
 
 public class Driver {
+	
+	private static List<Printer> allPrinters = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
+    	String smallKonicaPath = "C:\\Users\\carrilloc.YGA\\Desktop\\PrinterURLs\\SmallKonicaIPs.csv";
+    	String brotherPath = "C:\\Users\\carrilloc.YGA\\Desktop\\PrinterURLs\\BrotherIPs.csv";
+    	
         ScrapeWebSmallKonica smallKonicaScrape = new ScrapeWebSmallKonica();
-        smallKonicaScrape.readSmallKonicaIpCSV();
+        ScrapeWebBrother brotherScrape = new ScrapeWebBrother();
+        
+        smallKonicaScrape.readIPCSV(smallKonicaPath);
+        brotherScrape.readIPCSV(brotherPath);
 
         while (true) {
+        	
             for (String ip : smallKonicaScrape.getIpList()) {
                 smallKonicaScrape.createPrinterList(ip);
             }
-            View view = View.getInstance(smallKonicaScrape.getPrinterList());
+            
+            for (String ip : brotherScrape.getIpList()) {
+            	brotherScrape.createPrinterList(ip);
+            }
+            
+            allPrinters.addAll(smallKonicaScrape.getPrinterList());
+            allPrinters.addAll(brotherScrape.getPrinterList());
+            
+            View view = View.getInstance(allPrinters);
             view.getFrame().setVisible(true);
             view.updateView();
-            TimeUnit.MINUTES.sleep(1);
-            smallKonicaScrape.getPrinterList().clear();
+            TimeUnit.MINUTES.sleep(120);
+            allPrinters.clear();
         }
     }
 }

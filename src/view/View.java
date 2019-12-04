@@ -1,9 +1,17 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import data.Printer;
 
@@ -41,8 +49,16 @@ public class View {
     private JPanel mainPanel() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(logoPanel(), BorderLayout.NORTH);
         mainPanel.add(scrollPane(), BorderLayout.CENTER);
         return mainPanel;
+    }
+    
+    private JPanel logoPanel() {
+    	JPanel logoPanel = new JPanel();
+    	logoPanel.setBackground(STD_BG);
+    	logoPanel.add(new JLabel(new ImageIcon("PrinterLogo5.png")));
+    	return logoPanel;
     }
 
     private JScrollPane scrollPane() {

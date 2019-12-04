@@ -157,7 +157,7 @@ public class PrinterOutputView {
         c.gridy = 1;
         c.anchor = GridBagConstraints.EAST;
         c.insets = new Insets(TOP, LEFT, BOTTOM, RIGHT);
-        JLabel transferRollerLabel = new JLabel("Transfer belt");
+        JLabel transferRollerLabel = new JLabel("Transfer roller");
         setFont(transferRollerLabel, Color.ORANGE, 15);
         return transferRollerLabel;
     }

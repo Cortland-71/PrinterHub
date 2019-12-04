@@ -1,47 +1,20 @@
 package data;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class ScrapeWebSmallKonica {
-    private static WebDriver webDriver;
-    private static Document doc;
-    private static Elements el;
-    private static List<String> ipList = new ArrayList<>();
-    private static List<Printer> printerList = new ArrayList<>();
+public class ScrapeWebSmallKonica extends Scraper {
 
-    public List<String> getIpList() {
-        return ipList;
-    }
-
-    public List<Printer> getPrinterList() {
-        return printerList;
-    }
-
-    public void readSmallKonicaIpCSV() throws FileNotFoundException {
-        Scanner sc = new Scanner(new File("C:\\Users\\carrilloc.YGA\\Desktop\\SmallKonicaIPs.csv"));
-        while (sc.hasNext()) {
-            ipList.add(sc.next());
-        }
-        sc.close();
-    }
-
+	@Override
     public void createPrinterList(String ip) {
         try {
             logIn(ip);
@@ -51,7 +24,7 @@ public class ScrapeWebSmallKonica {
             List<Integer> printerLevels = getPrinterLevels();
             Thread.sleep(800);
             webDriver.quit();
-
+            
             Printer p = new Printer(printerInfo, printerLevels);
             printerList.add(p);
 
