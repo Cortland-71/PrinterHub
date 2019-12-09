@@ -8,11 +8,9 @@ import java.util.Scanner;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.openqa.selenium.WebDriver;
 
 public abstract class Scraper {
 	
-	protected static WebDriver webDriver;
     protected static Document doc;
     protected static Elements el;
     protected List<String> ipList = new ArrayList<>();

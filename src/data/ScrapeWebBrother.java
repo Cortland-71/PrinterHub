@@ -6,10 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.jsoup.Jsoup;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ScrapeWebBrother extends Scraper{
+	private WebDriver webDriver;
 
 	@Override
 	public void createPrinterList(String ip) {
@@ -38,6 +40,7 @@ public class ScrapeWebBrother extends Scraper{
         options.addArguments("--window-position=-32000,-32000");
         webDriver = new ChromeDriver(options);
         webDriver.get(address);
+
     }
 	
 	private List<String> getPrinterInfo(String address) {
@@ -102,5 +105,8 @@ public class ScrapeWebBrother extends Scraper{
 		.collect(Collectors.toList());
 	}
 	
+	public WebDriver getWebDriver() {
+		return webDriver;
+	}
 
 }

@@ -25,11 +25,15 @@ public class Driver {
         	
             for (String ip : smallKonicaScrape.getIpList()) {
                 smallKonicaScrape.createPrinterList(ip);
+                smallKonicaScrape.getWebDriver().quit();
             }
+            
             
             for (String ip : brotherScrape.getIpList()) {
             	brotherScrape.createPrinterList(ip);
+            	brotherScrape.getWebDriver().quit();
             }
+            
             
             allPrinters.addAll(smallKonicaScrape.getPrinterList());
             allPrinters.addAll(brotherScrape.getPrinterList());
@@ -39,6 +43,8 @@ public class Driver {
             view.updateView();
             TimeUnit.MINUTES.sleep(120);
             allPrinters.clear();
+            smallKonicaScrape.getPrinterList().clear();
+            brotherScrape.getPrinterList().clear();
         }
     }
 }

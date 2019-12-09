@@ -8,11 +8,14 @@ import java.util.stream.IntStream;
 
 import org.jsoup.Jsoup;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class ScrapeWebSmallKonica extends Scraper {
+	
+	private WebDriver webDriver;
 
 	@Override
     public void createPrinterList(String ip) {
@@ -23,7 +26,6 @@ public class ScrapeWebSmallKonica extends Scraper {
             Thread.sleep(800);
             List<Integer> printerLevels = getPrinterLevels();
             Thread.sleep(800);
-            webDriver.quit();
             
             Printer p = new Printer(printerInfo, printerLevels);
             printerList.add(p);
@@ -84,5 +86,9 @@ public class ScrapeWebSmallKonica extends Scraper {
                 .map(Integer::parseInt).collect(Collectors.toList());
 
         return printerLevels;
+    }
+    
+    public WebDriver getWebDriver() {
+    	return webDriver;
     }
 }

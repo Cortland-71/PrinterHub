@@ -2,7 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,6 @@ public class View {
 
     private static List<Printer> printerList = new ArrayList<>();
     private static List<PrinterOutputView> outputList = new ArrayList<>();
-    private GridBagConstraints c = new GridBagConstraints();
     public static final Color STD_BG = new Color(41,41,41);
     public static final Color STD_FG = new Color(255,177,43);
 
@@ -29,7 +27,7 @@ public class View {
     private View() {
         frame = new JFrame("Cortland's Printer HUB v1.0");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1080,720);
+        frame.setSize(1080,800);
         frame.setLocation(1924, 0);
         frame.add(mainPanel());
     }
@@ -73,7 +71,7 @@ public class View {
         scrollPanePanel.setLayout(new GridLayout(printerList.size(),1));
         PrinterOutputView pov = null;
 
-        for (Printer p : printerList) {
+        for (@SuppressWarnings("unused") Printer p : printerList) {
             pov = new PrinterOutputView();
             outputList.add(pov);
         }
