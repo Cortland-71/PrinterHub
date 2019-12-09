@@ -3,9 +3,12 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,7 +27,7 @@ public class View {
     private static View singleView = null;
 
     private JFrame frame;
-    private View() {
+    private View() throws IOException {
         frame = new JFrame("Cortland's Printer HUB v1.0");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1080,800);
@@ -32,7 +35,7 @@ public class View {
         frame.add(mainPanel());
     }
 
-    public static View getInstance(List<Printer> p) {
+    public static View getInstance(List<Printer> p) throws IOException {
         printerList = p;
         if (singleView == null)
             singleView = new View();
@@ -44,7 +47,7 @@ public class View {
         return this.frame;
     }
 
-    private JPanel mainPanel() {
+    private JPanel mainPanel() throws IOException {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(logoPanel(), BorderLayout.NORTH);
@@ -52,10 +55,11 @@ public class View {
         return mainPanel;
     }
     
-    private JPanel logoPanel() {
+    private JPanel logoPanel() throws IOException {
     	JPanel logoPanel = new JPanel();
     	logoPanel.setBackground(STD_BG);
-    	logoPanel.add(new JLabel(new ImageIcon("PrinterLogo5.png")));
+    	BufferedImage background = ImageIO.read(getClass().getResource("/PrinterLogo5.png"));
+    	logoPanel.add(new JLabel(new ImageIcon(background)));
     	return logoPanel;
     }
 
